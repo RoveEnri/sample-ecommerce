@@ -6,8 +6,8 @@ export const addCartItem = payload => {
   };
 };
 
-export const updateCartItem = ({ state, index }) => {
+export const removeCartItem = ({ index }) => {
   return function (dispatch) {
-    dispatch({ type: types.UPDATE_ITEM_CART, payload: { state, index } });
+    dispatch({ type: types.REMOVE_ITEM_CART, payload: { index } });
   };
 };

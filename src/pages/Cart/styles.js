@@ -10,6 +10,11 @@ const Wrapper = styled.div`
 
 const SubWrapper = styled.div`
   margin: 2em;
+
+  span {
+    float: right;
+    cursor: pointer;
+  }
 `;
 
 const CartStyles = { Wrapper, SubWrapper };

@@ -1,16 +1,23 @@
 import React from 'react';
-
 import { Table } from 'react-bootstrap';
-import CartStyles from './styles';
 
-import { useSelector } from 'react-redux';
+import CartStyles from './styles';
+import { removeIcon } from 'assets';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { cartAction } from '_redux';
 
 export default function Cart() {
+  const reduxDispatch = useDispatch();
   const header = ['Product Name', 'Unit Price', 'Quantity', 'Total'];
 
   const cart = useSelector(state => state.cart.items);
 
   const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+
+  const onRemoveCartItem = index => {
+    reduxDispatch(cartAction.removeCartItem(index));
+  };
 
   return (
     <CartStyles.Wrapper>
@@ -30,7 +37,12 @@ export default function Cart() {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
-                <td>{product.quantity * product.price}</td>
+                <td>
+                  {product.quantity * product.price}
+                  <span>
+                    <img src={removeIcon} alt='remove' onClick={() => onRemoveCartItem(i)} />
+                  </span>
+                </td>
               </tr>
             ))}
             <tr>

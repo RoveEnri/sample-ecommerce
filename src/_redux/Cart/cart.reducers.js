@@ -2,7 +2,6 @@ import produce from 'immer';
 import * as types from './cart.types';
 
 const initialState = {
-  //add loaders for api requests
   // loaders: {
   //   isAdding: false,
   //   isReading: false,
@@ -20,10 +19,8 @@ const reducer = produce((draft = initialState, action) => {
       // draft.loaders.isAdding = false;
       return;
 
-    case types.UPDATE_ITEM_CART:
-      draft.items[payload.index] = payload.state;
-      // draft.loaders.isUpdating = false;
-      return;
+    case types.REMOVE_ITEM_CART:
+      draft.items.splice(payload.index, 1);
 
     default:
       return draft;
